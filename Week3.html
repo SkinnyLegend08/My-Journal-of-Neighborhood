@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Week 1</title>
+    <style>
+        body {
+            background-color: khaki;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .bubbles-bg {
+            position: fixed;
+            top: 0; left: 0; 
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .bubble {
+            position: absolute;
+            bottom: -120px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 40% 40%, rgba(255,20,147,0.65) 70%, rgba(255,20,147,0.18) 100%);
+            border-radius: 50%;
+            filter: blur(2px);
+            animation: floatBubble 12s linear infinite;
+        }
+        .bubble:nth-child(2) {
+            width: 80px; height: 80px;
+            background: radial-gradient(circle at 30% 30%, rgba(70,130,255,0.45) 70%, rgba(70,130,255,0.13) 100%);
+            animation-duration: 13s;
+        }
+        .bubble:nth-child(3) {
+            width: 100px; height: 100px;
+            background: radial-gradient(circle at 60% 60%, rgba(255,193,7,0.45) 70%, rgba(255,193,7,0.13) 100%);
+            animation-duration: 16s;
+        }
+        .bubble:nth-child(4) {
+            width: 60px; height: 60px;
+            background: radial-gradient(circle at 50% 50%, rgba(0,255,128,0.55) 70%, rgba(0,255,128,0.16) 100%);
+            animation-duration: 11s;
+        }
+        .bubble:nth-child(5) {
+            width: 140px; height: 140px;
+            background: radial-gradient(circle at 50% 50%, rgba(138,43,226,0.50) 70%, rgba(138,43,226,0.13) 100%);
+            animation-duration: 17s;
+        }
+        .bubble:nth-child(6) {
+            left: 20%;
+            width: 90px; height: 90px;
+            background: radial-gradient(circle at 40% 40%, rgba(255,140,0,0.5) 70%, rgba(255,140,0,0.12) 100%);
+            animation-duration: 15s;
+            animation-delay: 4s;
+        }
+        .bubble:nth-child(7) {
+            left: 60%;
+            width: 110px; height: 110px;
+            background: radial-gradient(circle at 40% 40%, rgba(0,255,255,0.48) 70%, rgba(0,255,255,0.13) 100%);
+            animation-duration: 14s;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes floatBubble {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.9;
+            }
+            60% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-90vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+        .home-button {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #3a8dde;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            box-shadow: 2px 2px 8px #b2bec3;
+            margin-top: 20px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .home-button:hover {
+            background: #245ca6;
+            transform: translateY(-2px) scale(1.05);
+        }
+        .shadowed-text {
+            font-size: 32px;
+            color: #2d3436;
+            text-shadow: 2px 2px 8px #b2bec3, 0 0 2px #636e72;
+        }
+        .animated-text {
+            font-size: 30px;
+            font-weight: bold;
+            color: #6c5ce7;
+            animation: colorchange 2s infinite alternate;
+            text-shadow:
+                2px 2px 0 #1976d2,
+                4px 4px 0 #0d47a1,
+                6px 6px 8px #005cb2;
+            letter-spacing: 2px;
+        }
+        @keyframes colorchange {
+            from { color: #6c5ce7; }
+            to { color: #00b894; }
+        }
+        .mid-img {
+            display: block;
+            margin: 32px auto;
+            max-width: 350px;
+            width: 90%;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+        }
+
+        .image-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            margin: 40px 0;
+            padding: 20px;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+        }
+        .fade-img {
+            width: 280px;
+            height: 280px;
+            max-width: 90vw;
+            max-height: 60vh;
+            object-fit: cover;
+            opacity: 0;
+            animation: fadeInOut 10s linear infinite;
+        }
+        .fade-img:nth-child(1) { animation-delay: 0s; }
+        .fade-img:nth-child(2) { animation-delay: 2s; }
+        .fade-img:nth-child(3) { animation-delay: 4s; }
+        .fade-img:nth-child(4) { animation-delay: 6s; }
+        .fade-img:nth-child(5) { animation-delay: 8s; }
+
+        @keyframes fadeInOut {
+            0%   { opacity: 0; }
+            10%  { opacity: 1; }
+            30%  { opacity: 1; }
+            40%  { opacity: 0; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bubbles-bg">
+        <span class="bubble" style="left: 10%; animation-delay: 0s;"></span>
+        <span class="bubble" style="left: 30%; animation-delay: 2s;"></span>
+        <span class="bubble" style="left: 55%; animation-delay: 1s;"></span>
+        <span class="bubble" style="left: 75%; animation-delay: 3s;"></span>
+        <span class="bubble" style="left: 85%; animation-delay: 1.5s;"></span>
+        <span class="bubble"></span>
+        <span class="bubble"></span>
+    </div>
+    <p class="shadowed-text">This third week was a short one, but it was full of fun! We kicked things off by crafting our branding statements, which led into updating and creating new résumés. The highlight of the week was our big retreat on Saturday.</p>
+    <p class="animated-text">Saturday was a day of growth! We broke into different groups and came up with team names, building a strong sense of connection and collaboration. Two major takeaways from the day were: </p>
+    <p class="animated-text">1. It’s okay to say “no”—and sometimes, that’s enough. </p>
+    <p class="animated-text">2. You can’t pour from an empty cup—self-care matters.</p>
+    <div class="image-row">
+        <img src="IMG_1186.jpeg" class="fade-img" alt="Image 1">
+        <img src="IMG_1162.jpeg" class="fade-img" alt="Image 2">
+        <img src="IMG_1165.jpeg" class="fade-img" alt="Image 3">
+        <img src="IMG_7883.jpg" class="fade-img" alt="Image 4">
+        <img src="IMG_7896.jpg" class="fade-img" alt="Image 5">
+    </div>
+    <a href="My WebBranch.html" class="home-button">Back to Homepage</a>
+</body>
+</html>

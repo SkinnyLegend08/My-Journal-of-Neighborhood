@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Week4</title>
+    <style>
+        body {
+            background-color: khaki;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: linear-gradient(120deg, #fffbe6 0%, #f6e58d 100%);
+            opacity: 0.23;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .home-button {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #3a8dde;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            box-shadow: 2px 2px 8px #b2bec3;
+            margin-top: 36px;
+            margin-bottom: 24px;
+            transition: background 0.2s, transform 0.2s;
+            position: relative;
+        }
+        .home-button:hover {
+            background: #245ca6;
+            transform: translateY(-2px) scale(1.05);
+        }
+        .footer {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            /* Removed position: fixed; */
+            background: linear-gradient(120deg, #fffbe6cc 0%, #f6e58dcc 100%);
+            backdrop-filter: blur(2px);
+            padding-top: 12px;
+            padding-bottom: 14px;
+        }
+        .svg-waves-bg {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 200vw;
+            min-height: 40vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .wave-main {
+            animation: waveMoveMain 18s linear infinite;
+        }
+        .wave-second {
+            animation: waveMoveSecond 25s linear infinite;
+        }
+        .wave-third {
+            animation: waveMoveThird 32s linear infinite;
+        }
+        @keyframes waveMoveMain {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50vw); }
+        }
+        @keyframes waveMoveSecond {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-35vw); }
+        }
+        @keyframes waveMoveThird {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-25vw); }
+        }
+
+        /* Animated dropping text styles */
+        .drop-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            font-weight: bold;
+            letter-spacing: 0.1em;
+            margin-top: 60px;
+            margin-bottom: 16px;
+            color: #ff6a88;
+            text-shadow: 0 2px 8px #fffbe6, 0 4px 32px #fcb69f;
+            user-select: none;
+            flex-wrap: wrap;
+            min-height: 3.5em;
+        }
+        .drop-text span {
+            opacity: 0;
+            display: inline-block;
+            transform: translateY(-40px);
+            animation: dropIn 0.5s forwards;
+        }
+        .drop-text .fade-out {
+            animation: fadeOut 0.6s forwards;
+        }
+        @keyframes dropIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+        }
+        /* Style for the PDF iframe */
+        .pdf-frame {
+            display: block;
+            margin: 32px auto 0 auto;
+            box-shadow: 0px 4px 32px #fcb69f44;
+            border-radius: 12px;
+            border: none;
+            background: #fffbe6;
+            max-width: 98vw;
+        }
+        .side-note {
+            position: absolute;
+            left: 3vw;
+            top: 180px;
+            max-width: 200px;
+            font-size: 1rem;
+            color: #8a5c2d;
+            background: #fffbe6cc;
+            padding: 10px 16px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 14px #fcb69f33;
+            z-index: 2;
+        }
+        @media (max-width: 800px) {
+            .side-note {
+                position: static;
+                margin: 16px auto 0 auto;
+                display: block;
+                text-align: left;
+                max-width: 90vw;
+            }
+            .footer {
+                position: static;
+                padding-top: 24px;
+                padding-bottom: 24px;
+                background: none;
+                backdrop-filter: none;
+            }
+        }
+        .random-message-container {
+            margin: 32px auto 0 auto;
+            max-width: 600px;
+            text-align: center;
+        }
+        #randomMsgBtn {
+            background: #ff6a88;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 14px;
+            box-shadow: 1px 1px 8px #fcb69f88;
+            transition: background 0.2s;
+        }
+        #randomMsgBtn:hover {
+            background: #fcb69f;
+            color: #8a5c2d;
+        }
+        .random-message {
+            min-height: 2em;
+            margin-top: 1em;
+            font-size: 1.15em;
+            color: #8a5c2d;
+            background: #fffbe6cc;
+            padding: 12px 18px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px #fcb69f33;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="drop-text" id="dropText"></div>
+    <div class="side-note">I left this like this because I found it funny</div>
+    <iframe id="resumePdf" src="Isaiah's Resume.pdf" width="600" height="800" class="pdf-frame"></iframe>
+    
+    <!-- Interactive random message feature -->
+    <div class="random-message-container">
+        <button id="randomMsgBtn">Show me something on the Resume</button>
+        <div id="randomMsg" class="random-message"></div>
+    </div>
+
+    <div class="footer">
+        <a href="My WebBranch.html" class="home-button">Back to Homepage</a>
+    </div>
+
+    <svg class="svg-waves-bg" viewBox="0 0 2880 320" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="waveGradient" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#fcb69f"/>
+                <stop offset="100%" stop-color="#ff6a88"/>
+            </linearGradient>
+        </defs>
+        <g class="wave-main">
+            <path fill="url(#waveGradient)" fill-opacity="0.8"
+                d="M0,192 Q360,320 720,192 T1440,192 T2160,192 T2880,192 V320 H0 Z"/>
+            <path fill="url(#waveGradient)" fill-opacity="0.8"
+                d="M0,192 Q360,320 720,192 T1440,192 T2160,192 T2880,192 V320 H0 Z"
+                transform="translate(1440,0)"/>
+        </g>
+        <g class="wave-second">
+            <path fill="#f6e58d" fill-opacity="0.5"
+                d="M0,220 Q360,340 720,220 T1440,220 T2160,220 T2880,220 V320 H0 Z"/>
+            <path fill="#f6e58d" fill-opacity="0.5"
+                d="M0,220 Q360,340 720,220 T1440,220 T2160,220 T2880,220 V320 H0 Z"
+                transform="translate(1440,0)"/>
+        </g>
+        <g class="wave-third">
+            <path fill="#fffbe6" fill-opacity="0.4"
+                d="M0,240 Q360,370 720,240 T1440,240 T2160,240 T2880,240 V320 H0 Z"/>
+            <path fill="#fffbe6" fill-opacity="0.4"
+                d="M0,240 Q360,370 720,240 T1440,240 T2160,240 T2880,240 V320 H0 Z"
+                transform="translate(1440,0)"/>
+        </g>
+    </svg>
+    <script>
+        // Animated dropping text
+        const textToAnimate = "Resume!";
+
+        const dropTextDiv = document.getElementById('dropText');
+        const dropInDuration = 0.5; // seconds (matches CSS)
+        const dropInStagger = 0.08; // seconds between each letter
+        const visibleDuration = 1.6; // seconds the full text stays visible before fade out
+        const fadeOutDuration = 0.6; // seconds (matches CSS)
+
+        function animateText() {
+            dropTextDiv.innerHTML = '';
+            // Create spans for each letter
+            [...textToAnimate].forEach((char, idx) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.animationDelay = (idx * dropInStagger) + 's';
+                dropTextDiv.appendChild(span);
+            });
+
+            // Calculate total time before fade out starts
+            const totalInTime = dropInStagger * (textToAnimate.length - 1) + dropInDuration;
+            const fadeOutStart = totalInTime + visibleDuration;
+
+            // Start fade out after the text is fully visible for a while
+            setTimeout(() => {
+                const spans = dropTextDiv.querySelectorAll('span');
+                spans.forEach((span, idx) => {
+                    // Optional: stagger fade out a bit for a wavy effect
+                    setTimeout(() => span.classList.add('fade-out'), idx * 25);
+                });
+            }, fadeOutStart * 1000);
+
+            // When fade out finished, restart the animation
+            setTimeout(animateText, (fadeOutStart + fadeOutDuration + 0.2) * 1000);
+        }
+
+        animateText();
+
+        // Interactive Random Resume Fact Feature
+        const messages = [
+            "Went through MaxxPotential",
+            "Went through Neighborhood's Professional Development & Career Training",
+            "Went to Tallwood Highschool",
+            "Has skills in collaboration, initiative, curiosity, and a learning mindset",
+            "Worked at Virginia ABC",
+            "Worked at Virginia Public Schools Transportation"
+        ];
+
+        document.getElementById("randomMsgBtn").onclick = function() {
+            const msgDiv = document.getElementById('randomMsg');
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            msgDiv.textContent = messages[randomIndex];
+        };
+    </script>
+</body>
+</html>

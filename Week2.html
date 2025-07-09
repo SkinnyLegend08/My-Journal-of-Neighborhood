@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Week 1</title>
+    <style>
+        body 
+         {
+            background-color: khaki;
+            font-family: Arial, sans-serif;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: repeating-linear-gradient(
+                -45deg,
+                #fffbe6,
+                #fffbe6 20px,
+                #f6e58d 20px,
+                #f6e58d 40px
+            );
+            opacity: 0.3;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        {
+            background-color: khaki;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .home-button {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #3a8dde;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 18px;
+            box-shadow: 2px 2px 8px #b2bec3;
+            margin-top: 20px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .home-button:hover {
+            background: #245ca6;
+            transform: translateY(-2px) scale(1.05);
+        }
+        .shadowed-text {
+  font-size: 32px;
+  color: #2d3436;
+  text-shadow: 2px 2px 8px #b2bec3, 0 0 2px #636e72;
+}
+        .animated-text {
+  font-size: 30px;
+  font-weight: bold;
+  color: #6c5ce7;
+  animation: colorchange 2s infinite alternate;
+}
+
+@keyframes colorchange {
+  from { color: #6c5ce7; }
+  to { color: #00b894; }
+}
+        .mid-img {
+    display: block;
+    margin: 32px auto;
+    max-width: 350px;   /* reduce this value to your liking */
+    width: 90%;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+    </style>
+</head>
+<body>
+<p class="shadowed-text">Week 2 focused on self-awareness and developing our identity within the workplace. We explored our roots—our foundation—using the "Me Tree" tool to reflect on who we are and why we do what we do. This helped us uncover our driving forces and the motivations that keep us moving forward. We closed the week by giving and receiving feedback from fellow leaders, fostering growth through shared insights and perspectives.</p>
+     <img src="IMG_1150.jpeg" alt="Me Tree" class="mid-img">
+    <p class="animated-text"> A notable event this week was our first community gathering. We kicked things off with games and food, creating a relaxed and welcoming atmosphere. One of the highlights was a show-and-tell session, where I chose to bring myself and share the story behind my tattoos. I have 16 tattoos, and I've personally done all but three of them—each one carrying its own meaning and reflection of my journey.</p>
+<a href="My WebBranch.html" class="home-button">Back to Homepage</a>
+</body>
+</html>
